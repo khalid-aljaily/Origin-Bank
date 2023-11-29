@@ -12,7 +12,6 @@ const links = ["Home", "Career", "About", "Security"];
 function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [active, setActive] = useState("Home");
   return (
     <div className="mt-16 md:mt-24 pt-[50px] md:pt-[60px] bg-gra-8 px-[16px] sm:px-10 lg:px-20 pb-[30px] md:pb-[50px] ">
       <div className=" flex flex-col items-center mb-[30px] md:mb-5">
@@ -25,9 +24,12 @@ function Footer() {
             <Anchor
               onClick={() => {
                 if (location.pathname !== `/${link}`) {
-                  setActive(link);
-                  navigate(`/${link}`);
-                  window.scrollTo(0, 0);
+                  if (link == "Home" && location.pathname == "/") {
+                    return;
+                  } else {
+                    navigate(link == "Home" ? "/" : `/${link}`);
+                    window.scrollTo(0, 0);
+                  }
                 }
               }}
               key={link}

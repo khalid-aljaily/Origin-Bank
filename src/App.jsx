@@ -70,7 +70,7 @@ function App() {
         <img src={victor} alt="" className="absolute top-0 left-0" />
         <Header />
         <Routes>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/Career" element={<Career />}></Route>
           <Route path="/About" element={<About />}></Route>
           <Route path="/Security" element={<Security />}></Route>

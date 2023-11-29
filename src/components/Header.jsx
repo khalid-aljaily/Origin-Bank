@@ -6,9 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 const links = ["Home", "Career", "About", "Security"];
 
 function Header() {
-  const location = useLocation()
+  const location = useLocation();
   const [opened, { toggle }] = useDisclosure(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Group
       justify="space-between"
@@ -16,14 +16,28 @@ function Header() {
       className=" py-[14px] px-6 border border-solid border-gra-5 rounded-full mt-[30px] relative w-full"
       bg={"gray.8"}
     >
-      <Group onClick={()=>navigate('home')} className="cursor-pointer">
+      <Group
+        onClick={() => {
+          if (location.pathname != "/") navigate("/");
+        }}
+        className="cursor-pointer"
+      >
         <img src={logo} alt="" className="w-[26px] md:w-[30px]" />
         <Text c={"white.0"}>Origin Bank</Text>
       </Group>
       <Group gap={5} visibleFrom="md">
         {links.map((link) => (
           <Anchor
-            onClick={() => {if(location.pathname!==`/${link}`){navigate(`/${link}`)}}}
+            onClick={() => {
+              if (location.pathname !== `/${link}`) {
+                if (link == "Home" && location.pathname == "/") {
+                  return;
+                } else {
+                  navigate(link == "Home" ? "/" : `/${link}`);
+                  window.scrollTo(0, 0);
+                }
+              }
+            }}
             key={link}
             c={"white.0"}
             className={`link px-6 py-3 text-sm hover:bg-gra-6 no-underline rounded-full  ${
@@ -36,14 +50,27 @@ function Header() {
       </Group>
       <Group gap={5} visibleFrom="md">
         <Button
-        onClick={()=>navigate('/SignUp')}
+          onClick={() => {
+            if (location.pathname != "/SignUp") {
+              navigate("/SignUp");
+            }
+          }}
           variant="subtle"
           c={"white.0"}
           className="h-auto w-auto px-6 py-3 text-sm"
         >
           Sign Up
         </Button>
-        <Button className="h-auto w-auto px-6 py-3 text-sm"  onClick={()=>{if(location.pathname=='/Login'){navigate('/Login')}}}>Login</Button>
+        <Button
+          className="h-auto w-auto px-6 py-3 text-sm"
+          onClick={() => {
+            if (location.pathname != "/Login") {
+              navigate("/Login");
+            }
+          }}
+        >
+          Login
+        </Button>
       </Group>
       <Button
         className=" px-[14px] py-[6px] text-sm"
@@ -71,25 +98,48 @@ function Header() {
       >
         {links.map((link) => (
           <Anchor
-            onClick={() => {if(location.pathname.slice(1)!=link){navigate(`/${link}`);toggle()}}}
+            onClick={() => {
+              if (location.pathname !== `/${link}`) {
+                if (link == "Home" && location.pathname == "/") {
+                  return;
+                } else {
+                  navigate(link == "Home" ? "/" : `/${link}`);
+                  window.scrollTo(0, 0);
+                }
+              }
+            }}
             key={link}
             c={"white.0"}
             className={`link px-6 py-2 text-white text-sm hover:bg-gra-6 no-underline rounded-full block 
-           ${location.pathname.slice(1) == link && "bg-gra-6" } `}
+           ${location.pathname.slice(1) == link && "bg-gra-6"} `}
           >
             {link}
           </Anchor>
         ))}
         <Group gap={5} className="justify-center w-full">
           <Button
-          onClick={()=>{if(location.pathname=='/Login'){navigate('/SignUp');toggle()}}}
+            onClick={() => {
+              if (location.pathname != "/SignUp") {
+                navigate("/SignUp");
+                toggle();
+              }
+            }}
             variant="subtle"
             c={"white.0"}
             className=" px-[14px] py-[6px] text-sm"
           >
             Sign Up
           </Button>
-          <Button c={"dark.9"} className="px-[14px] py-[6px] text-sm" onClick={()=>{if(location.pathname=='/Login'){navigate('/Login');toggle()}}}>
+          <Button
+            c={"dark.9"}
+            className="px-[14px] py-[6px] text-sm"
+            onClick={() => {
+              if (location.pathname != "/Login") {
+                navigate("/Login");
+                toggle();
+              }
+            }}
+          >
             Login
           </Button>
         </Group>
