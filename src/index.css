@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+@tailwind base; 
+@tailwind components; 
+@tailwind utilities;
+
+@layer components{
+    .centered-text {
+        @apply text-gra-1 text-sm md:text-base font-light text-center 
+    }
+    .section-text {
+        @apply text-gra-1 text-sm md:text-base font-light text-center md:text-left
+    }
+}
+
+.card-0 {
+    border-radius: 40px 14px;
+    border: 1px solid rgba(202, 255, 51, 0.10);
+    background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'),#131410;
+    background-blend-mode: normal, normal,screen;
+    }
+  
+  
+.card-1{
+    border-radius: 14px 40px;
+border: 1px solid rgba(202, 255, 51, 0.10);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'),#131410;
+background-blend-mode: normal, normal,screen;
+}
+
+.card-2{
+    border-radius: 14px 40px;
+border: 1px solid rgba(202, 255, 51, 0.10);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'), #131410;
+background-blend-mode: normal, normal, screen;
+}
+
+.card-3{
+    border-radius: 40px 14px;
+border: 1px solid rgba(202, 255, 51, 0.10);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'), #131410;
+background-blend-mode: normal, normal, screen;
+}
+
+.mobile-card{
+    border-radius: 40px 40px 14px 14px;
+border: 1px solid rgba(202, 255, 51, 0.10);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'),  #131410;
+background-blend-mode: normal, normal, screen;
+}
+
+.dashed-border {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='rgb(38, 38, 38)' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.mission-box {
+    border-radius: 50px 50px 20px 20px;
+border: 1px solid var(--grey-15, #262626);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'),#131410;
+background-blend-mode: normal, normal, screen;
+}
+@media (max-width:767px) {
+    .mission-box{
+        border-radius: 50px 50px 0px 0px;
+    }
+}
+
+.security-card{
+    border-radius: 20px;
+border: 1px solid var(--grey-15, #262626);
+background: linear-gradient(106deg, rgba(202, 255, 51, 0.05) -29.45%, rgba(202, 255, 51, 0.00) 27.86%), linear-gradient(267deg, #1C1C1C 40.67%, rgba(28, 28, 28, 0.00) 99.81%), url('/src/assets/careerCardsBg.png'), #131410;
+background-blend-mode: normal, normal, screen;
+}
