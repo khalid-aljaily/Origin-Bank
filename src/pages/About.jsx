@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Title } from "@mantine/core";
 import React from "react";
-import careerImg from "../assets/careerImg2.png";
+import careerImg from "../assets/careerImg1.png";
 import design from "../assets/Abstract Design (4).svg";
 import { useMediaQuery } from "@mantine/hooks";
 import Misson from "../components/about/Misson";

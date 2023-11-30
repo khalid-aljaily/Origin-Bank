@@ -45,7 +45,7 @@ function Footer() {
           <Group gap={5}>
             <img src={mailIcon} alt="email icon" />
             <Anchor className="text-whi-3 font-normal text-sm md:text-base">
-              mail@Origin Bank.com
+              mail@origin-b.com
             </Anchor>
           </Group>
           <Group gap={5}>

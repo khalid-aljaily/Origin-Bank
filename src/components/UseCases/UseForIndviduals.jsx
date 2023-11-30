@@ -1,10 +1,10 @@
 import React from "react";
-import case1 from "../../assets/useCase1.png";
-import case2 from "../../assets/useCase2.png";
-import case3 from "../../assets/useCase3.png";
-import case4 from "../../assets/useCase4.png";
+import case1 from "../../assets/useCase1.svg";
+import case2 from "../../assets/useCase2.svg";
+import case3 from "../../assets/useCase3.svg";
+import case4 from "../../assets/useCase4.svg";
 import design from "../../assets/Abstract Design (3).svg";
-import { Box, Button, Divider, Flex, Grid, GridCol, SimpleGrid, Text, Title } from "@mantine/core";
+import { Box, Button, Divider, Flex, SimpleGrid, Text, Title } from "@mantine/core";
 
 function UseForIndviduals() {
     const data = [{percentage:'78%',text:'Secure Retirement Planning'},{percentage:'63%',text:'Manageable Debt Consolidation'},{percentage:'91%',text:'Reducing financial burdens'}]

@@ -37,7 +37,7 @@ function OurValues() {
           >
             <Title
               order={3}
-              className="text-[30px] md:text-[40px] !text-gra-6 mb-[14px] md:mb-5"
+              className="text-[30px] md:text-[40px] !text-gra-3 mb-[14px] md:mb-5"
             >
               {item.value}
             </Title>

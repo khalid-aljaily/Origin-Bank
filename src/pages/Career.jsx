@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Title } from "@mantine/core";
 import React from "react";
-import careerImg from "../assets/careerImage.png";
+import careerImg from "../assets/careerImg2.png";
 import design from "../assets/Abstract Design (4).svg";
 import { useMediaQuery } from "@mantine/hooks";
 import OurValues from "../components/career/OurValues";
@@ -49,7 +49,7 @@ function Career() {
               <img
                 src={careerImg}
                 alt=""
-                className="absolute top-0   right-0 h-auto sm:h-[100%] w-full sm:w-auto z-0"
+                className="absolute top-0 right-0 h-auto sm:h-[100%] w-full sm:w-auto z-0"
               />
             </div>
           </div>

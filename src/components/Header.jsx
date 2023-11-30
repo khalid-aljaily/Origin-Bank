@@ -2,7 +2,7 @@ import { Anchor, Box, Button, Group, Text } from "@mantine/core";
 import logo from "../assets/logo/shape-30.svg";
 import { useDisclosure } from "@mantine/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { motion,AnimatePresence } from "framer-motion";
 const links = ["Home", "Career", "About", "Security"];
 
 function Header() {
@@ -42,7 +42,7 @@ function Header() {
             c={"white.0"}
             className={`link px-6 py-3 text-sm hover:bg-gra-6 no-underline rounded-full  ${
               location.pathname.slice(1) == link && "bg-gra-6"
-            }`}
+            } ${location.pathname =='/' && link =='Home'&&'bg-gra-6'}`}
           >
             {link}
           </Anchor>
@@ -92,8 +92,9 @@ function Header() {
           />
         </svg>
       </Button>
+   
       <Box
-        hidden={!opened}
+        hidden = {!opened}
         className="absolute top-[75px] right-0 space-y-2  bg-gra-8 rounded-2xl p-5 w-full sm:w-80 z-20"
       >
         {links.map((link) => (
@@ -104,14 +105,14 @@ function Header() {
                   return;
                 } else {
                   navigate(link == "Home" ? "/" : `/${link}`);
-                  window.scrollTo(0, 0);
+                  toggle();
                 }
               }
             }}
             key={link}
             c={"white.0"}
             className={`link px-6 py-2 text-white text-sm hover:bg-gra-6 no-underline rounded-full block 
-           ${location.pathname.slice(1) == link && "bg-gra-6"} `}
+           ${location.pathname.slice(1) == link && "bg-gra-6"} ${location.pathname =='/' && link =='Home'&&'bg-gra-6'}`}
           >
             {link}
           </Anchor>
@@ -144,6 +145,7 @@ function Header() {
           </Button>
         </Group>
       </Box>
+       
     </Group>
   );
 }
