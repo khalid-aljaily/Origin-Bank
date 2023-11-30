@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import case1 from "../../assets/useCase5.svg";
 import case2 from "../../assets/useCase6.svg";
 import case3 from "../../assets/useCase7.svg";
 import case4 from "../../assets/useCase8.svg";
 import design from "../../assets/Abstract Design (3).svg";
+import { useInView } from "react-intersection-observer";
+import {motion} from 'framer-motion'
 import {
   Box,
   Button,
@@ -16,9 +18,15 @@ import {
 
 function UseForBusinesses() {
   const data = [
-    { percentage: "65%", text: "Cash Flow Management" },
-    { percentage: "70%", text: "Drive Business Expansion" },
-    { percentage: "45%", text: "Streamline payroll processing" },
+    { percentage: 65, text: "Cash Flow Management" },
+    { percentage: 70, text: "Drive Business Expansion" },
+    { percentage: 45, text: "Streamline payroll processing" },
+  ];
+  const businessCases = [
+    { image: case1, text: 'Startups and Entrepreneurs' },
+    { image: case2, text: 'Business Expansion' },
+    { image: case3, text: 'Cash Flow Management' },
+    { image: case4, text: 'Payment Solutions' },
   ];
   return (
     <Flex className="flex-col lg:flex-row-reverse gap-[60px] mt-10">
@@ -27,27 +35,15 @@ function UseForBusinesses() {
         className="relative p-5 md:p-10 flex-1 gap-[10px] bg-gra-8 rounded-2xl "
       >
         <img src={design} alt="" className="absolute top-0 left-0 z-[2]" />
-
-        <Box className="px-[14px] py-5 md:p-6  bg-gra-9 z-10 relative text-center rounded-xl border border-gra-7 border-solid">
-          <img src={case1} alt="" />
-
-          <Text className="text-sm md:text-base">
-            Startups and Entrepreneurs
-          </Text>
-        </Box>
-        <Box className="px-[14px] py-5 md:p-6  bg-gra-9 z-10 relative text-center rounded-xl border border-gra-7 border-solid">
-          <img src={case3} alt="" />
-          <Text className="text-sm md:text-base">Business Expansion</Text>
-        </Box>
-
-        <Box className="px-[14px] py-5 md:p-6  bg-gra-9 z-10 relative text-center rounded-xl border border-gra-7 border-solid">
-          <img src={case2} alt="" />
-          <Text className="text-sm md:text-base">Cash Flow Management</Text>
-        </Box>
-        <Box className="px-[14px] py-5 md:p-6  bg-gra-9 z-10 relative text-center rounded-xl border border-gra-7 border-solid">
-          <img src={case4} alt="" />
-          <Text className="text-sm md:text-base">Payment Solutions</Text>
-        </Box>
+        {businessCases.map((caseItem, index) => (
+        <motion.div 
+        initial ={{opacity:0,y:50}} whileInView={{opacity:1,y:0,transition:{delay:index*.5,duration:.5}}} viewport={{once:true}}  key={caseItem.text}
+          className=" px-[14px] py-5 md:p-6 bg-gra-9 z-10 relative text-center rounded-xl border border-gra-7 border-solid"
+        >
+          <img src={caseItem.image} alt="" />
+          <Text className="text-sm md:text-base">{caseItem.text}</Text>
+        </motion.div>
+      ))}
       </SimpleGrid>
       <div className="flex-1">
         <div>
@@ -77,8 +73,8 @@ function UseForBusinesses() {
                 }`}
               >
                 <Text className="text-[40px] font-medium  text-gre-7 mb-[14px]">
-                  {stat.percentage}
-                </Text>
+                <PercentageDisplay targetPercentage={stat.percentage}/>
+                        </Text>
 
                 <Text className=" font-light text-sm text-gra-1">
                   {stat.text}
@@ -119,3 +115,41 @@ function UseForBusinesses() {
 }
 
 export default UseForBusinesses;
+
+export const PercentageDisplay = ({ targetPercentage }) => {
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Ensures the animation triggers only once
+  });
+
+  useEffect(() => {
+    if (inView) {
+      const animationDuration = 5000; // Adjust the duration as needed (e.g., 10 seconds)
+      const animationInterval = 5; // Adjust the interval as needed
+
+      let startTimestamp;
+      let animationFrameId;
+
+      const animatePercentage = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = timestamp - startTimestamp;
+        const percentageIncrement = (targetPercentage / animationDuration) * animationInterval;
+
+        setCurrentPercentage((prevPercentage) => {
+          const nextPercentage = prevPercentage + percentageIncrement;
+
+          return nextPercentage >= targetPercentage ? targetPercentage : nextPercentage;
+        });
+
+        if (currentPercentage < targetPercentage) {
+          animationFrameId = requestAnimationFrame(animatePercentage);
+        }
+      };
+
+      animationFrameId = requestAnimationFrame(animatePercentage);
+    }
+  }, [targetPercentage, inView, currentPercentage]);
+
+  return <div ref={ref}>{currentPercentage.toFixed(0)}%</div>;
+};
+

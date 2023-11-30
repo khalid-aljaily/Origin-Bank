@@ -7,7 +7,7 @@ const links = ["Home", "Career", "About", "Security"];
 
 function Header() {
   const location = useLocation();
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened , { toggle }] = useDisclosure(false);
   const navigate = useNavigate();
   return (
     <Group
@@ -92,60 +92,64 @@ function Header() {
           />
         </svg>
       </Button>
-   
-      <Box
-        hidden = {!opened}
-        className="absolute top-[75px] right-0 space-y-2  bg-gra-8 rounded-2xl p-5 w-full sm:w-80 z-20"
-      >
-        {links.map((link) => (
-          <Anchor
-            onClick={() => {
-              if (location.pathname !== `/${link}`) {
-                if (link == "Home" && location.pathname == "/") {
-                  return;
-                } else {
-                  navigate(link == "Home" ? "/" : `/${link}`);
-                  toggle();
-                }
-              }
-            }}
-            key={link}
-            c={"white.0"}
-            className={`link px-6 py-2 text-white text-sm hover:bg-gra-6 no-underline rounded-full block 
-           ${location.pathname.slice(1) == link && "bg-gra-6"} ${location.pathname =='/' && link =='Home'&&'bg-gra-6'}`}
-          >
-            {link}
-          </Anchor>
-        ))}
-        <Group gap={5} className="justify-center w-full">
-          <Button
-            onClick={() => {
-              if (location.pathname != "/SignUp") {
-                navigate("/SignUp");
-                toggle();
-              }
-            }}
-            variant="subtle"
-            c={"white.0"}
-            className=" px-[14px] py-[6px] text-sm"
-          >
-            Sign Up
-          </Button>
-          <Button
-            c={"dark.9"}
-            className="px-[14px] py-[6px] text-sm"
-            onClick={() => {
-              if (location.pathname != "/Login") {
-                navigate("/Login");
-                toggle();
-              }
-            }}
-          >
-            Login
-          </Button>
-        </Group>
-      </Box>
-       
+   <AnimatePresence>
+         {opened&&
+          <motion.div
+              initial ={{opacity:0,x:100}}
+              animate = {{opacity:1,x:0,transition:{duration:.5}}}
+              exit={{opacity:0,x:10}}
+              className="absolute top-[75px] right-0 space-y-2  bg-gra-8 rounded-2xl p-5 w-full sm:w-80 z-20"
+            >
+              {links.map((link) => (
+                <Anchor
+                  onClick={() => {
+                    if (location.pathname !== `/${link}`) {
+                      if (link == "Home" && location.pathname == "/") {
+                        return;
+                      } else {
+                        navigate(link == "Home" ? "/" : `/${link}`);
+                        toggle();
+                      }
+                    }
+                  }}
+                  key={link}
+                  c={"white.0"}
+                  className={`link px-6 py-2 text-white text-sm hover:bg-gra-6 no-underline rounded-full block 
+                 ${location.pathname.slice(1) == link && "bg-gra-6"} ${location.pathname =='/' && link =='Home'&&'bg-gra-6'}`}
+                >
+                  {link}
+                </Anchor>
+              ))}
+              <Group gap={5} className="justify-center w-full">
+                <Button
+                  onClick={() => {
+                    if (location.pathname != "/SignUp") {
+                      navigate("/SignUp");
+                      toggle();
+                    }
+                  }}
+                  variant="subtle"
+                  c={"white.0"}
+                  className=" px-[14px] py-[6px] text-sm"
+                >
+                  Sign Up
+                </Button>
+                <Button
+                  c={"dark.9"}
+                  className="px-[14px] py-[6px] text-sm"
+                  onClick={() => {
+                    if (location.pathname != "/Login") {
+                      navigate("/Login");
+                      toggle();
+                    }
+                  }}
+                >
+                  Login
+                </Button>
+              </Group>
+            </motion.div>}
+       </AnimatePresence>
+
     </Group>
   );
 }

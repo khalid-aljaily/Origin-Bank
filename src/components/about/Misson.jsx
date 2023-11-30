@@ -3,6 +3,7 @@ import React from "react";
 import design from "../../assets/Abstract Design.svg";
 import missionImg1 from "../../assets/missionImg1.png";
 import missionImg2 from "../../assets/missionImg2.png";
+import { motion } from "framer-motion";
 function Misson() {
   return (
     <div className="mt-16 md:mt-24 text-center md:text-left">
@@ -23,7 +24,12 @@ function Misson() {
       </Text>
       <div className="w-full">
         <Flex className=" items-center flex-col md:flex-row mb-[50px] md:mb-0">
-          <Box className="p-5 lg:p-[60px] pb-0 bg-gra-7 mission-box relative flex-[3]">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
+            className="p-5 lg:p-[60px] pb-0 bg-gra-7 mission-box relative flex-[3]"
+          >
             <img
               src={missionImg1}
               alt="mission image"
@@ -35,9 +41,11 @@ function Misson() {
               alt="design image"
               className="max-h-[100%] absolute bottom-0 left-1/2 -translate-x-1/2 z-0 mx-auto "
             />
-          </Box>
-          <Box
-            k
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
             className="border-gre-7 border-t md:border-t-0 md:border-l  border-solid border-0  pl-5 md:pl-6 flex-[6] pt-[30px] md:pt-0"
           >
             <Title
@@ -55,11 +63,13 @@ function Misson() {
               customers. Our mission is to be their trusted partner, helping
               them navigate their financial journey and realize their dreams.
             </Text>
-          </Box>
+          </motion.div>
         </Flex>
         <Flex className="  items-center w-full flex-col-reverse md:flex-row md:mt-10 lg:-mt-12">
-          <Box
-            k
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
             className="md:flex-[6] border-gre-7 border-t md:border-t-0 md:border-r  border-solid border-0 pr-5 md:pr-6 pt-[30px] md:pt-0"
           >
             <Title
@@ -79,8 +89,13 @@ function Misson() {
               unwavering commitment to excellence, trust, and customer
               satisfaction.
             </Text>
-          </Box>
-          <Box className="p-5 lg:p-[60px]  pb-0 bg-gra-7 mission-box relative md:flex-[3]">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
+            className="p-5 lg:p-[60px]  pb-0 bg-gra-7 mission-box relative md:flex-[3]"
+          >
             <img
               src={missionImg2}
               alt="mission image"
@@ -92,7 +107,7 @@ function Misson() {
               alt="design image"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 mx-auto  max-h-[100%]"
             />
-          </Box>
+          </motion.div>
         </Flex>
       </div>
     </div>

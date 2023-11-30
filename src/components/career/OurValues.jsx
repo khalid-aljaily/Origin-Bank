@@ -1,6 +1,7 @@
 import { Box, SimpleGrid, Text, Title } from "@mantine/core";
 import React from "react";
 import { ourValues } from "../../utils";
+import { motion } from "framer-motion";
 function OurValues() {
   return (
     <div className="mt-16 md:mt-24 text-center md:text-left">
@@ -31,8 +32,15 @@ function OurValues() {
         className="gap-[50px] md:gap-[60px]"
       >
         {ourValues.map((item, index) => (
-          <Box
-            key={index}
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 0.5, delay: index * 0.5 },
+            }}
+            viewport={{ once: true }}
+            key={item.value}
             className="border-l-gre-7 border  border-solid border-t-0 border-b-0 border-r-0 pl-5 md:pl-6"
           >
             <Title
@@ -42,7 +50,7 @@ function OurValues() {
               {item.value}
             </Title>
             <Text className="section-text ">{item.content}</Text>
-          </Box>
+          </motion.div>
         ))}
       </SimpleGrid>
     </div>

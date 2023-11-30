@@ -2,7 +2,7 @@ import { Box, Divider, Group, SimpleGrid, Text, Title } from "@mantine/core";
 import React from "react";
 import { ourBenefits } from "../../utils";
 import { useMediaQuery } from "@mantine/hooks";
-
+import { motion } from "framer-motion";
 function OurBenefits() {
   const isSmallScreen = useMediaQuery("(max-width:1023px)");
   return (
@@ -41,7 +41,10 @@ function OurBenefits() {
                 : "pl-0 lg:pl-[30px]  pt-6 lg:pt-[30px]"
             }`}
           >
-            <Box
+            <motion.div 
+            initial = {{opacity:0 , y:100}}
+            whileInView={{opacity:1,y:0,transition:{duration:.5,delay:index*.5}}}
+            viewport={{once:true}}
               className={`p-6 md:p-10 h-full ${
                 isSmallScreen ? "mobile-card" : "card-" + index
               }`}
@@ -58,7 +61,7 @@ function OurBenefits() {
               <Text className="section-text !text-left mt-5 sm:mt-6">
                 {item.content}
               </Text>
-            </Box>
+            </motion.div >
             {index == 0 ? (
               <>
                 <div className="  dashed-border h-[1px] left-0 absolute bottom-0 w-full lg:!w-[calc(100%-24px)] xl:!w-[calc(100%-30px)]"></div>

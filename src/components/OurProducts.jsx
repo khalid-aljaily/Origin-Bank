@@ -10,8 +10,8 @@ import { useState } from "react";
 import prod1 from "../assets/prod1.svg";
 import prod2 from "../assets/prod2.svg";
 import prod3 from "../assets/prod3.svg";
-import prod4 from '../assets/useCase8.svg'
-
+import prod4 from "../assets/useCase8.svg";
+import { motion } from "framer-motion";
 const IndvProductsContent = [
   {
     icon: prod1,
@@ -109,8 +109,23 @@ function OurProducts() {
 }
 const ProductView = ({ product }) => {
   return product.map((prod, idx) => (
-    <div key={idx} className="relative">
-      <Box
+    <div key={prod.title} className="relative">
+      <motion.div
+        initial={
+          idx == 0
+            ? { opacity: 0, x: -50 }
+            : idx == 1
+            ? { opacity: 0, y: 50 }
+            : { opacity: 0, x: 50 }
+        }
+        whileInView={
+          idx == 0
+            ? { opacity: 1, x: 0, transition: { duration: 0.5 } }
+            : idx == 1
+            ? { opacity: 1, y: 0, transition: { duration: 0.5 } }
+            : { opacity: 1, x: 0, transition: { duration: 0.5 } }
+        }
+        viewport={{ once: true }}
         className={`text-center py-[30px] md:py-0 md:px-[30px] ${
           idx == 2 && "!pr-0"
         } ${idx == 0 && "!pl-0"} ${idx == 0 && "!pt-0"} ${idx == 2 && "!pb-0"}`}
@@ -125,7 +140,7 @@ const ProductView = ({ product }) => {
         <Text className="centered-text sm:text-[12px] lg:text-base">
           {prod.content}
         </Text>
-      </Box>
+      </motion.div>
       {idx != 0 && (
         <Divider
           orientation={"vertical"}

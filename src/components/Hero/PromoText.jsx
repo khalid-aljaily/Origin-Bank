@@ -1,8 +1,9 @@
 import { Box, Button, Group, Stack, Text } from "@mantine/core";
 import check from "../../assets/checkIcon.svg";
+
 function PromoText() {
   return (
-    <Box className=" md:max-w-[45%]">
+    <div className=" md:max-w-[45%]">
       <Group className="bg-gra-6 w-fit px-[10px] py-[5px] rounded-full mx-auto md:mx-0 gap-2 ">
         <img src={check} alt="" />
         <Text className="text-xs md:text-sm font-light">
@@ -42,7 +43,7 @@ function PromoText() {
       <Button className="px-[24px] py-[14px] mt-5 sm:mt-10 mx-auto md:mx-0 block ">
         Open Account
       </Button>
-    </Box>
+    </div>
   );
 }
 

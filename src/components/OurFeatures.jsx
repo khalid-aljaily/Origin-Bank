@@ -1,6 +1,7 @@
 import { Box, Button, Flex, SimpleGrid, Text, Title } from "@mantine/core";
 import React, { useState } from "react";
 import arrow from "../assets/arrowUpRight.svg";
+import { motion } from "framer-motion";
 import {
   customerSupportFeatures,
   financialTools,
@@ -59,7 +60,17 @@ function OurFeatures() {
         </Flex>
         <SimpleGrid cols={{ base: 1, md: 2 }} className="gap-5 ">
           {active.features.map((feat, idx) => (
-            <Box key={idx} className="p-[30px] lg:p-10 bg-gra-8 rounded-xl ">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { delay: idx * 0.6, duration: 0.5, type: "spring" },
+              }}
+              viewport={{ once: true }}
+              key={feat.title}
+              className="p-[30px] lg:p-10 bg-gra-8 rounded-xl hover:bg-gra-7  duration-300"
+            >
               <Title order={3} className="text-lg font-normal mb-6 relative">
                 {feat.title}
                 <img
@@ -69,7 +80,7 @@ function OurFeatures() {
                 />
               </Title>
               <Text className="section-text">{feat.text}</Text>
-            </Box>
+            </motion.div>
           ))}
         </SimpleGrid>
       </Flex>

@@ -59,7 +59,7 @@ function Faq() {
           isOpen && "hidden"
         } absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-gra-9 h-[35%] w-full`}
       />
-      <Collapse in={isOpen} className="mt-5">
+      <Collapse in={isOpen} className="mt-5" transitionDuration={500}>
         <SimpleGrid cols={{ base: 1, md: 2 }} className="gap-5">
           {faq.slice(4).map((question, idx) => (
             <Box
@@ -82,7 +82,7 @@ function Faq() {
         </SimpleGrid>
       </Collapse>
       <Button
-        className={`border-gra-7 px-5 py-[14px] bg-gra-8 text-sm font-normal lg:w-fit !text-white mx-auto block mt-5 items-center`}
+        className={`border-gra-7 px-5 py-[14px] bg-gra-8 text-sm font-normal lg:w-fit !text-white mx-auto block mt-5 items-center hover:bg-gra-7`}
         onClick={() => setIsOpen(!isOpen)}
         rightSection={
           isOpen ? (
