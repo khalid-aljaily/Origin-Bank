@@ -1,5 +1,5 @@
 import { Box, Divider, Group, SimpleGrid, Text, Title } from "@mantine/core";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ourBenefits } from "../../utils";
 import { useMediaQuery } from "@mantine/hooks";
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ function OurBenefits() {
         well-being and success. We offer a comprehensive range of benefits
         designed to support their personal and professional growth.
       </Text>
-      <SimpleGrid className="gap-0 items-stretch grid-cols-1 lg:grid-cols-2">
+      <SimpleGrid className="gap-0 items-stretch grid-cols-1 lg:grid-cols-2" >
         {ourBenefits.map((item, index) => (
           <div
             key={index}

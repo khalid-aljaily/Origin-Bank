@@ -10,7 +10,23 @@ import {
 function OurFeatures() {
   const buttons = [onlineBanking, financialTools, customerSupportFeatures];
   const [active, setActive] = useState(onlineBanking);
-
+  const AnimatedGrid = motion(SimpleGrid)
+  const GridVars = {
+    hidden:{},
+    open:{
+      transition:{staggerChildren:.5}
+    }
+  }
+  const itemsVars= {
+    hidden:{
+      opacity: 0, y: 50
+    },
+    open:{
+      opacity: 1,
+      y: 0,
+      transition: {  duration: 0.5, }
+    }
+  }
   return (
     <div className="mt-16 md:mt-24 text-center md:text-left">
       <div className="mb-[10px]">
@@ -58,16 +74,15 @@ function OurFeatures() {
             </Button>
           ))}
         </Flex>
-        <SimpleGrid cols={{ base: 1, md: 2 }} className="gap-5 ">
+        <AnimatedGrid 
+        variants={GridVars}
+        initial="hidden"
+        whileInView='open'
+        viewport={{once:true}}
+        cols={{ base: 1, md: 2 }} className="gap-5 ">
           {active.features.map((feat, idx) => (
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                transition: { delay: idx * 0.6, duration: 0.5, type: "spring" },
-              }}
-              viewport={{ once: true }}
+              variants={itemsVars}
               key={feat.title}
               className="p-[30px] lg:p-10 bg-gra-8 rounded-xl hover:bg-gra-7  duration-300"
             >
@@ -82,7 +97,7 @@ function OurFeatures() {
               <Text className="section-text">{feat.text}</Text>
             </motion.div>
           ))}
-        </SimpleGrid>
+        </AnimatedGrid>
       </Flex>
     </div>
   );

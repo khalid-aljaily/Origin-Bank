@@ -1,7 +1,22 @@
-import { Box, SimpleGrid, Text, Title } from "@mantine/core";
+import { SimpleGrid, Text, Title } from "@mantine/core";
 import React from "react";
 import { ourValues } from "../../utils";
 import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const listItem = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+};
+const AnimeatedGrid = motion(SimpleGrid);
 function OurValues() {
   return (
     <div className="mt-16 md:mt-24 text-center md:text-left">
@@ -27,21 +42,19 @@ function OurValues() {
         These values define our culture and shape the way we work together to
         achieve our goals.
       </Text>
-      <SimpleGrid
+      <AnimeatedGrid
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
         cols={{ base: 1, md: 2 }}
-        className="gap-[50px] md:gap-[60px]"
+        className=" gap-[50px] md:gap-[60px] overflow-hidden"
       >
         {ourValues.map((item, index) => (
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: { duration: 0.5, delay: index * 0.5 },
-            }}
-            viewport={{ once: true }}
+            variants={listItem}
             key={item.value}
-            className="border-l-gre-7 border  border-solid border-t-0 border-b-0 border-r-0 pl-5 md:pl-6"
+            className="border-l-gre-7 border border-solid border-t-0 border-b-0 border-r-0 pl-5 md:pl-6"
           >
             <Title
               order={3}
@@ -52,7 +65,7 @@ function OurValues() {
             <Text className="section-text ">{item.content}</Text>
           </motion.div>
         ))}
-      </SimpleGrid>
+      </AnimeatedGrid>
     </div>
   );
 }

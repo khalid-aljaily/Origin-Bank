@@ -3,6 +3,24 @@ import React from "react";
 import { securityMethods } from "../../utils";
 import { motion } from "framer-motion";
 function SecurityMethods() {
+  const AnimatedGrid = motion(SimpleGrid);
+  const gridVars = {
+    hidden: {},
+    open: {
+      transition: { staggerChildren: 0.5 },
+    },
+  };
+  const itemsVars = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
   return (
     <div className="mt-16 md:mt-24 text-center md:text-left">
       <div className="mb-[10px]">
@@ -27,16 +45,17 @@ function SecurityMethods() {
         are safeguarded at all times
       </Text>
 
-      <SimpleGrid cols={{ base: 1, md: 2 }} className="gap-5 ">
+      <AnimatedGrid
+        variants={gridVars}
+        initial="hidden"
+        whileInView="open"
+        viewport={{ once: true }}
+        cols={{ base: 1, md: 2 }}
+        className="gap-5 "
+      >
         {securityMethods.map((method, idx) => (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5, delay: idx * 0.5 },
-            }}
-            viewport={{ once: true }}
+            variants={itemsVars}
             key={idx}
             className="security-card p-[30px] md:p-10"
           >
@@ -52,7 +71,7 @@ function SecurityMethods() {
             <Text className="section-text">{method.content}</Text>
           </motion.div>
         ))}
-      </SimpleGrid>
+      </AnimatedGrid>
     </div>
   );
 }
