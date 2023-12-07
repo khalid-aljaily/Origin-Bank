@@ -23,7 +23,7 @@ function Misson() {
         customer satisfaction and community development
       </Text>
       <div className="w-full">
-        <Flex className=" items-center flex-col md:flex-row mb-[50px] md:mb-0">
+        <Flex className=" items-center flex-col md:flex-row mb-[50px] md:mb-0 overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
@@ -65,7 +65,7 @@ function Misson() {
             </Text>
           </motion.div>
         </Flex>
-        <Flex className="  items-center w-full flex-col-reverse md:flex-row md:mt-10 lg:-mt-12">
+        <Flex className="  items-center w-full flex-col-reverse md:flex-row md:mt-10 lg:-mt-12 overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
