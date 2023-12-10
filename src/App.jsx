@@ -66,7 +66,7 @@ function App() {
   });
   return (
     <MantineProvider theme={theme} defaultColorScheme="light">
-      <div className="mx-[16px] sm:mx-10 lg:mx-20">
+      <div className="mx-[16px] sm:mx-10 lg:mx-20 overflow-hidden">
         <img src={victor} alt="" className="absolute top-0 left-0" />
         <Header />
         <Routes>

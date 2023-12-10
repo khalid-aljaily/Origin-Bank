@@ -13,7 +13,7 @@ function Header() {
     <Group
       justify="space-between"
       align="center"
-      className=" py-[14px] px-6 border border-solid border-gra-5 rounded-full mt-[30px] relative w-full"
+      className=" py-[14px] px-6 border border-solid border-gra-5 rounded-full mt-[30px] relative w-full "
       bg={"gray.8"}
     >
       <Group

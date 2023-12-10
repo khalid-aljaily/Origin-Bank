@@ -32,7 +32,7 @@ function SignUp() {
       <img src={design} alt="" className="absolute top-0 right-0" />
       <Title
         order={2}
-        className="text-center !text-gre-7 font-medium text-[28px] md:text-[38px] mb-[10px] md:mb-4"
+        className="text-center !text-gre-7 font-medium text-[28px] md:text-[38px] mb-[10px] md:mb-4 relative z-10"
       >
         Sign Up
       </Title>
